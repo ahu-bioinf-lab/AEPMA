@@ -30,8 +30,7 @@ The Smith-Waterman is a dynamic programming method for **local sequence alignmen
 - Detecting functional domains
 
 ### Example Alignment:
-| Position | 1 | 2 | 3 | 4 | 5 |
-|----------|---|---|---|---|---|
-| Query:   | A | C | C | T | A |
-|          | | |   | | | | |   |
-| Target:  | A | G | C | T | A |
+`$` Alignment Visualization:
+`>` Query:    A C C T A
+` `           |   | | |
+`>` Target:   A G C T A
