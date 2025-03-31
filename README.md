@@ -2,12 +2,12 @@
 ![AEPMA Framework](https://github.com/ahu-bioinf-lab/AEPMA/blob/master/AEPMA.png)
 ## Overview
 
-AEPMA is a computational framework for predicting potential associations between antimicrobial peptides (AMPs) and microbes. By constructing a novel peptide-microbe-disease network and employing a self-evolving information aggregation model, AEPMA can effectively capture the complex relationships in heterogeneous biological networks for AMP discovery and repurposing.
+AEPMA is a computational framework for predicting potential associations between antimicrobial peptides (AMPs) and microbes. By constructing a novel peptide-microbe-disease network and employing an autoevolutionary information aggregation model, AEPMA can effectively capture the complex relationships in heterogeneous biological networks for AMP discovery and repurposing.
 
 ## Key Features
 
 - Constructs a comprehensive peptide-microbe-disease heterogeneous network
-- Implements a self-evolving information aggregation model for representation learning
+- Implements an autoevolutionary information aggregation model for representation learning
 - Automatically aggregates semantic information from heterogeneous networks
 - Incorporates spatiotemporal dependencies and heterogeneous interactions
 - Provides an efficient computational alternative to costly biological experiments
