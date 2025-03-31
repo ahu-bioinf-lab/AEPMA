@@ -29,4 +29,4 @@ Following these steps in order will help ensure successful replication of the re
 
 ## Contact
 
-For questions or suggestions, please contact [huzylife@163.com] or open an issue on GitHub.
+For questions or suggestions, please contact [d202481545@hust.edu.cn] or open an issue on GitHub.
