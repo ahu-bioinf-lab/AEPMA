@@ -1,4 +1,8 @@
 # AEPMA: Peptide-Microbe association prediction based on autoevolutionary heterogeneous graph learning
+![release](https://img.shields.io/badge/release-v1.0-blue)
+![open issues](https://img.shields.io/badge/open%20issues-0-brightgreen)
+![pull requests](https://img.shields.io/badge/pull%20requests-0%20open-brightgreen)
+
 ![AEPMA Framework](https://github.com/ahu-bioinf-lab/AEPMA/blob/master/AEPMA.png)
 ## Overview
 
