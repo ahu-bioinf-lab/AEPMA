@@ -1,9 +1,9 @@
-# PMDHAN Protein Sequence Alignment Data
+# PMDHAN Peptide Sequence Alignment Data
 
 ## File Description
-This repository contains protein-protein interaction data processed using the Smith-Waterman algorithm:
+This repository contains Peptide-Peptide assocition data processed using the Smith-Waterman algorithm:
 
-- `pep-pep.dat`: Protein sequence alignment data file containing local alignment results
+- `pep-pep.dat`: Peptide sequence alignment data file containing local alignment results
 
 ## Download Instructions
 1. Access the data file via Google Drive:
@@ -15,7 +15,7 @@ PMDHAN/
 └── pep-pep.dat
 
 ## About Smith-Waterman Algorithm
-The Smith-Waterman is a dynamic programming method for **local sequence alignment** of biological sequences (DNA/protein).
+The Smith-Waterman is a dynamic programming method for **local sequence alignment** of biological sequences (DNA/Protein(Peptide)).
 
 ### Key Features:
 - **Local alignment**: Finds best matching subregions while ignoring dissimilar parts
@@ -25,7 +25,7 @@ The Smith-Waterman is a dynamic programming method for **local sequence alignmen
 - **Backtracking**: Alignment reconstruction starts from highest scoring cell
 
 ### Typical Applications:
-- Identifying conserved protein motifs
+- Identifying conserved peptide motifs
 - Finding local gene similarities
 - Detecting functional domains
 
