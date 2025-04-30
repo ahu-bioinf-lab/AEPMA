@@ -59,7 +59,7 @@ The processed data will be saved in `.npz` and `.pkl` files for easy loading:
     - All matrices (e.g., `dp_matrix`, `pd_matrix`, etc.) will be saved in `.npz` files.
     - Adjacency matrices will be saved in serialized `.pkl` files.
   
-In the `Preprocess.ipynb` script, you can see how to load these saved files and use them for subsequent network construction or model training.
+**In the `Preprocess.ipynb` script, you can see how to load these saved files and use them for subsequent network construction or model training.**
 
 ---
 
