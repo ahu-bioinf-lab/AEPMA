@@ -1,7 +1,3 @@
-Sure! Here's the English version of the guide:
-
----
-
 ## Flexible Network Input Guide for Drug-Microbe Data
 
 This guide will help users adjust the network input format, understand the parameter descriptions, and use the preprocessing and matrix generation code to process various datasets.
