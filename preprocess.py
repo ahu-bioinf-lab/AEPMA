@@ -73,13 +73,13 @@ def pretreatment_Pep(prefix):
     # pm_npy = pm_pos[indices]
     adj_offset = np.zeros((node_types.shape[0], node_types.shape[0]), dtype=np.float32)
     adj_offset[pm_pos[:, 0], pm_pos[:, 1]] = 1
-    adjs_offset['0'] = sp.coo_matrix(adj_offset)
+    adjs_offset['pm'] = sp.coo_matrix(adj_offset)
 
     # md
     md_npy = md.to_numpy(int)[:, :2]
     adj_offset = np.zeros((node_types.shape[0], node_types.shape[0]), dtype=np.float32)
     adj_offset[md_npy[:, 0] + offsets['p'], md_npy[:, 1] + offsets['m']] = 1
-    adjs_offset['1'] = sp.coo_matrix(adj_offset)
+    adjs_offset['md'] = sp.coo_matrix(adj_offset)
 
     # pp
     pp_npy = pp.to_numpy(int)[:, :2]
@@ -91,7 +91,7 @@ def pretreatment_Pep(prefix):
         pp_matrix[i, j] = k
         adj_offset[j, i] = k
         pp_matrix[j, i] = k
-    adjs_offset['2'] = sp.coo_matrix(adj_offset)
+    adjs_offset['simpp'] = sp.coo_matrix(adj_offset)
 
     # mm
     mm_npy = mm.to_numpy(int)[:, :2]
@@ -101,7 +101,7 @@ def pretreatment_Pep(prefix):
     for i, j, k in zip(mm_npy[:, 0] + offsets['p'], mm_npy[:, 1] + offsets['p'], mm_score):
         adj_offset[i, j] = k
         mm_matrix[i - offsets['p'], j - offsets['p']] = k
-    adjs_offset['3'] = sp.coo_matrix(adj_offset)
+    adjs_offset['simmm'] = sp.coo_matrix(adj_offset)
 
     # dd
     dd_npy = dd.to_numpy(int)[:, :2]
@@ -111,7 +111,7 @@ def pretreatment_Pep(prefix):
     for i, j, k in zip(dd_npy[:, 0] + offsets['m'], dd_npy[:, 1] + offsets['m'], dd_score):
         adj_offset[i, j] = k
         dd_matrix[i - offsets['m'], j - offsets['m']] = k
-    adjs_offset['4'] = sp.coo_matrix(adj_offset)
+    adjs_offset['simdd'] = sp.coo_matrix(adj_offset)
 
     np.savez('./preprocessed/combined_matrices.npz', dp_matrix=pp_matrix, pd_matrix=mm_matrix, de_matrix=dd_matrix)
     f2 = open("./preprocessed/adjs_offset.pkl", "wb")
