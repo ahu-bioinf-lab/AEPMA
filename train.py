@@ -69,8 +69,8 @@ def main():
                 normalize_row(adjs_offset[k] + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
             adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
                 normalize_row(adjs_offset[k].T + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
-    adjs_pt.append(sparse_mx_to_torch_sparse_tensor(sp.eye(adjs_offset['0'].shape[0], dtype=np.float32).tocoo()).cuda())
-    adjs_pt.append(torch.sparse.FloatTensor(size=adjs_offset['0'].shape).cuda())
+    adjs_pt.append(sparse_mx_to_torch_sparse_tensor(sp.eye(adjs_offset[adj_key[0]].shape[0], dtype=np.float32).tocoo()).cuda())
+    adjs_pt.append(torch.sparse.FloatTensor(size=adjs_offset[adj_key[0]].shape).cuda())
     print("Loading {} adjs...".format(len(adjs_pt)))
 
     #* load labels
