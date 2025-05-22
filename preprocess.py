@@ -119,9 +119,6 @@ def pretreatment_Pep(prefix):
     f2.close()
 
 def pretreatment_drugmicrobe(prefix):
-    # Define file paths
-    prefix = "./aBiofilm"
-    
     # Load the data
     pm = pd.read_csv(os.path.join(prefix, "adj.dat"), encoding='utf-8', delimiter=',',
                      names=['pid', 'mid', 'rating']).reset_index(drop=True)
