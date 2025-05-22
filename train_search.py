@@ -50,7 +50,6 @@ def search_main():
     node_types = torch.from_numpy(node_types).cuda()
 
     adjs_offset = pickle.load(open(os.path.join(prefix, "adjs_offset.pkl"), "rb"))
-    adjs_pt = []
     adj_key = list(adjs_offset.keys())
     adjs_pt = []
     for k in adj_key:
@@ -63,8 +62,8 @@ def search_main():
             adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
                 normalize_row(adjs_offset[k].T + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
 
-    adjs_pt.append(sparse_mx_to_torch_sparse_tensor(sp.eye(adjs_offset['1'].shape[0], dtype=np.float32).tocoo()).cuda())
-    adjs_pt.append(torch.sparse.FloatTensor(size=adjs_offset['1'].shape).cuda())
+    adjs_pt.append(sparse_mx_to_torch_sparse_tensor(sp.eye(adjs_offset[adj_key[0]].shape[0], dtype=np.float32).tocoo()).cuda())
+    adjs_pt.append(torch.sparse.FloatTensor(size=adjs_offset[adj_key[0]].shape).cuda())
 
     #* load labels
     pos_train_fold, pos_val_fold, pos_test_fold, neg_train_fold, neg_val_fold, neg_test_fold = get_datafold()
