@@ -58,16 +58,17 @@ def main():
     node_types = torch.from_numpy(node_types).cuda()
 
     adjs_offset = pickle.load(open(os.path.join(prefix, "adjs_offset.pkl"), "rb"))
+    adj_key = list(adjs_offset.keys())
     adjs_pt = []
-    for i in range(0, 2):
-        adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
-            normalize_row(adjs_offset[str(i)] + sp.eye(adjs_offset[str(i)].shape[0], dtype=np.float32))).cuda())
-        adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
-            normalize_row(adjs_offset[str(i)].T + sp.eye(adjs_offset[str(i)].shape[0], dtype=np.float32))).cuda())
-
-    for i in range(2, 5):
-        adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
-            normalize_sym(adjs_offset[str(i)] + sp.eye(adjs_offset[str(i)].shape[0], dtype=np.float32))).cuda())
+    for k in adj_key:
+        if 'sim' in k:
+            adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
+                normalize_sym(adjs_offset[k] + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
+        else:
+            adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
+                normalize_row(adjs_offset[k] + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
+            adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
+                normalize_row(adjs_offset[k].T + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
     adjs_pt.append(sparse_mx_to_torch_sparse_tensor(sp.eye(adjs_offset['0'].shape[0], dtype=np.float32).tocoo()).cuda())
     adjs_pt.append(torch.sparse.FloatTensor(size=adjs_offset['0'].shape).cuda())
     print("Loading {} adjs...".format(len(adjs_pt)))
