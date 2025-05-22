@@ -211,4 +211,4 @@ def pretreatment_drugmicrobe(prefix):
 if __name__ == '__main__':
     prefix = "./data/PMDHAN"
     pretreatment_Pep(prefix)
-    pretreatment_drugmicrobe(prefix)
+    # pretreatment_drugmicrobe(prefix)
