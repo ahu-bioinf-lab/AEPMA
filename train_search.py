@@ -11,7 +11,6 @@ from preprocess import normalize_sym, normalize_row, sparse_mx_to_torch_sparse_t
 from RWR import generate_node_embeddings
 from dataset import get_datafold
 
-"""执行搜索的脚本"""
 parser = argparse.ArgumentParser()
 parser.add_argument('--lr', type=float, default=0.006, help='learning rate')
 parser.add_argument('--wd', type=float, default=0.001, help='weight decay')
@@ -52,14 +51,18 @@ def search_main():
 
     adjs_offset = pickle.load(open(os.path.join(prefix, "adjs_offset.pkl"), "rb"))
     adjs_pt = []
-    for i in range(0, 2):
-        adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
-            normalize_row(adjs_offset[str(i)] + sp.eye(adjs_offset[str(i)].shape[0], dtype=np.float32))).cuda())
-        adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
-            normalize_row(adjs_offset[str(i)].T + sp.eye(adjs_offset[str(i)].shape[0], dtype=np.float32))).cuda())
-    for i in range(2, 5):
-        adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
-            normalize_sym(adjs_offset[str(i)] + sp.eye(adjs_offset[str(i)].shape[0], dtype=np.float32))).cuda())
+    adj_key = list(adjs_offset.keys())
+    adjs_pt = []
+    for k in adj_key:
+        if 'sim' in k:
+            adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
+                normalize_sym(adjs_offset[k] + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
+        else:
+            adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
+                normalize_row(adjs_offset[k] + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
+            adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
+                normalize_row(adjs_offset[k].T + sp.eye(adjs_offset[k].shape[0], dtype=np.float32))).cuda())
+
     adjs_pt.append(sparse_mx_to_torch_sparse_tensor(sp.eye(adjs_offset['1'].shape[0], dtype=np.float32).tocoo()).cuda())
     adjs_pt.append(torch.sparse.FloatTensor(size=adjs_offset['1'].shape).cuda())
 
