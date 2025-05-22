@@ -36,9 +36,6 @@ prefix = "lr" + str(args.lr) + "_wd" + str(args.wd) + \
 cstr_source = [0, 1]
 cstr_target = [1, 0]
 
-# 无约束de
-# cstr_source = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-# cstr_target = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 def search_main():
     torch.cuda.set_device(args.gpu)
@@ -55,8 +52,6 @@ def search_main():
 
     adjs_offset = pickle.load(open(os.path.join(prefix, "adjs_offset.pkl"), "rb"))
     adjs_pt = []
-    "两个个D(-1/2)AD(-1/2)和两个D(-1)A"
-    # 针对相似矩阵
     for i in range(0, 2):
         adjs_pt.append(sparse_mx_to_torch_sparse_tensor(
             normalize_row(adjs_offset[str(i)] + sp.eye(adjs_offset[str(i)].shape[0], dtype=np.float32))).cuda())
@@ -85,7 +80,6 @@ def search_main():
     print("Load Over!")
 
     t = [3]
-    #模型初始化
     model_s = Model(in_dims, args.n_hid, len(adjs_pt), t, cstr_source).cuda()
     model_t = Model(in_dims, args.n_hid, len(adjs_pt), t, cstr_target).cuda()
 
@@ -101,7 +95,6 @@ def search_main():
     )
 
     eps = args.eps
-    #开始训练
     minval_error = None
     for pos_train, pos_val, pos_test, neg_train, neg_val, neg_test in zip(pos_train_fold, pos_val_fold, pos_test_fold,
                                                                           neg_train_fold, neg_val_fold, neg_test_fold):
