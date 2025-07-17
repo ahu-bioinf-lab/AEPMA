@@ -45,6 +45,17 @@ Following these steps in order will help ensure successful replication of the re
 
 ---
 
+## Cite
+@article{hu2025aepma,
+  title={AEPMA: peptide--microbe association prediction based on autoevolutionary heterogeneous graph learning},
+  author={Hu, Zhiyang and Pan, Linqiang and Zhang, Daijun and Bin, Yannan and Su, Yansen},
+  journal={Briefings in Bioinformatics},
+  volume={26},
+  number={4},
+  pages={bbaf334},
+  year={2025},
+  publisher={Oxford University Press}
+}
 ## Contact
 
 For questions or suggestions, please contact [d202481545@hust.edu.cn] or open an issue on GitHub.
